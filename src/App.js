@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import BookSearchPage from './components/BookSearchPage';
+import PersonalBookshelfPage from './components/PersonalBookshelfPage';
+import './App.scss';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Book Search</Link>
+            </li>
+            <li>
+              <Link to="/bookshelf">My Bookshelf</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route exact path="/" element={<BookSearchPage />} />
+          <Route path="/bookshelf" element={<PersonalBookshelfPage />} />
+        </Routes>
+        <ToastContainer/>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
